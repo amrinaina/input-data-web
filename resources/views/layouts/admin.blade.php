@@ -54,7 +54,7 @@
 
 
     <!-- Amchart -->
-     <script src="{{ asset('assets/js/lib/morris-chart/raphael-min.js') }}"></script>
+    <script src="{{ asset('assets/js/lib/morris-chart/raphael-min.js') }}"></script>
     <script src="{{ asset('assets/js/lib/morris-chart/morris.js') }}"></script>
     <script src="{{ asset('assets/js/lib/morris-chart/dashboard1-init.js') }}"></script>
 
