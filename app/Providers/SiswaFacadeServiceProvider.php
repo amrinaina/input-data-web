@@ -3,29 +3,32 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Schema;
+use App;
 
-
-class AppServiceProvider extends ServiceProvider
+class SiswaFacadeServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Bootstrap services.
      *
      * @return void
      */
     public function boot()
     {
         //
-        Schema::defaultStringLength(191);
     }
 
     /**
-     * Register any application services.
+     * Register services.
      *
      * @return void
      */
     public function register()
     {
+        App::bind("siswa", function()
+        {
+            return new \App\Idw\SiswaClassFacade;
+        });
+    
         //
     }
 }

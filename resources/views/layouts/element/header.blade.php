@@ -1,7 +1,7 @@
 <div class="header">
     <nav class="navbar top-navbar navbar-expand-md navbar-light">
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('/home') }}">
                 <b><img src="{{ asset('assets/images/logo.png') }}" alt="homepage" class="dark-logo" /></b>
                 <span><img src="{{ asset('assets/images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
             </a>
@@ -20,13 +20,35 @@
             </ul>
             <ul class="navbar-nav my-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle text-muted  " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets/images/users/5.jpg') }}" alt="user" class="profile-pic"></a>
-                    <div class="dropdown-menu dropdown-menu-right animated zoomIn">
-                        <ul class="dropdown-user">
-                            <li><a href="#"><i class="ti-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="fa fa-power-off"></i> Logout</a></li>
-                        </ul>
-                    </div>
+                    @guest
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <img src="{{ asset('assets/images/users/5.jpg') }}" alt="user" class="profile-pic">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
+                                    {{ __('Logout') }}
+                                </a>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    @endguest
                 </li>
             </ul>
         </div>
@@ -38,12 +60,18 @@
             <ul id="sidebarnav">
                 <li class="nav-devider"></li>
                 <li class="nav-label">Home</li>
-                <li> <a href="{{ url('/') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</a>
+                <li> <a href="{{ url('/home') }}" aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu">Dashboard</a>
                 </li>
                 <li class="nav-label">Peserta Didik</li>
-                <li> <a href="{{ url('/siswa') }}" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Input Data Peserta Didik</span></a>
-                </li>
-                <li> <a href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Cetak Data Peserta Didik</span></a>
+                <li class="{{ Request::is('/siswa*') ||
+                            Request::is('/export*') ? 'active' : ''}}"> 
+                    <li> 
+                        <a href="{{ route('siswa') }}" class="{{ Request::is('siswa')
+                            ? 'active' : '' }}" aria-expanded="false"><i class="fa fa-envelope"></i><span class="hide-menu">Input Data Peserta Didik</span>
+                        </a>
+                    </li>
+                    <li> <a href="#" aria-expanded="false"><i class="fa fa-bar-chart"></i><span class="hide-menu">Cetak Data Peserta Didik</span></a>
+                    </li>
                 </li>
             </ul>
         </nav>

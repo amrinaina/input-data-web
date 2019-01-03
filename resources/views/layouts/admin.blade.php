@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang>
 
 <head>
     <meta charset="utf-8">
@@ -10,7 +10,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assets/images/favicon.png') }}">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
+    <title>{{ ('Input Data Web') }}</title>
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('assets/css/lib/bootstrap/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -21,6 +21,7 @@
     <link href="{{ asset('assets/css/lib/owl.theme.default.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/css/helper.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/lib/bootstrap/bootstrap.min.css')}}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
     <!--[if lt IE 9]>
@@ -30,14 +31,19 @@
 </head>
 
 <body class="fix-header fix-sidebar">
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
+    <div id="main-wrapper">
     
         @include('layouts.element.header')
 
 
 		@yield('content')
 
-
-		@include('layouts.element.footer')
+    </div>
+	@include('layouts.element.footer')
 		
     <!-- All Jquery -->
     <script src="{{ asset('assets/js/lib/jquery/jquery.min.js') }}"></script>
@@ -75,6 +81,17 @@
     <!-- scripit init-->
 
     <script src="{{ asset('assets/js/custom.min.js') }}"></script>
+
+    {{-- table --}}
+    <script src="{{ asset('assets/js/lib/datatables/datatables.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js')}}"></script>
+    <script src="{{ asset('assets/js/lib/datatables/datatables-init.js')}}"></script>
 
 </body>
 

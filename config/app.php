@@ -174,6 +174,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // Nauvalazhar\FacadePlease\FacadePleaseServiceProvider::class,
+        App\Providers\SiswaFacadeServiceProvider::class,
 
     ],
 
@@ -223,6 +225,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'Siswa' => App\Ids\SiswaFacade::class,
 
     ],
 

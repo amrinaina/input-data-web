@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="page-wrapper">
-	<div class="row page-titles">
+    <div class="row page-titles">
         <div class="col-md-5 align-self-center">
             <h3 class="text-primary">Dashboard</h3> </div>
         <div class="col-md-7 align-self-center">
@@ -13,17 +13,17 @@
             </ol>
         </div>
     </div>
-	<div class="container-fluid">
+    <div class="container-fluid">
     	<div class="row">
-	        <div class="col-lg-12">
-	            <div class="card">
-	                <div class="card-body browser">
-	                	<h1>Welcome To Dashboard</h1>
-	                </div>
-	            </div>
-	        </div>
-	    </div>
-	</div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-body browser">
+                    	<h1>Welcome To Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection
