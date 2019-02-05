@@ -18,7 +18,8 @@ class CreateDetailMuridTable extends Migration
             $table->integer('id_murid')->nullable();
             $table->integer('tinggi_badan')->nullable();
             $table->integer('berat_badan')->nullable();
-            $table->integer('jarak_sekolah')->nullable();
+            $table->tinyinteger('jarak_sekolah')->nullable();
+            $table->integer('jarak_sekolah_kilometer')->nullable();
             $table->string('waktu_tempuh')->nullable();
             $table->integer('jumlah_saudara_kandung')->nullable();
             $table->timestamps();

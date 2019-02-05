@@ -12,20 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('auth.login');
-});
-
+        return view('auth.login');
+    });
+Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
 Route::group(['namespace' => 'Admin'], function()
 {
-
+    
+    
+	//Home
 	Route::get('/home', 'DashboardController@index')->name('home');
 
-
+	//Siswa
 	Route::get('/siswa', ['as'=>'siswa','uses'=>'SiswaController@index']);
     Route::get('/siswa/create', ['as'=>'siswa.create','uses'=>'SiswaController@add']);
     Route::post('/siswa/createprocess', ['as'=>'siswa.createprocess','uses'=>'SiswaController@addprocess']);
@@ -34,5 +35,16 @@ Route::group(['namespace' => 'Admin'], function()
     Route::delete('/siswa/delete/{id}', ['as'=>'siswa.delete','uses'=>'SiswaController@delete']);
     Route::get('/siswa/view/{id}', ['as'=>'siswa.view','uses'=>'SiswaController@view']);
 
+    //Wakil
+    Route::get('/wakil', ['as'=>'wakil','uses'=>'SiswaController@wakil']);
+
+    //Ekskul
+    Route::get('/ekskul', ['as'=>'ekskul','uses'=>'SiswaController@ekskul']);
+
+    //Export
+    Route::get('/siswa/export', ['as'=>'export','uses'=>'SiswaController@export']);
+
+    //Import
+    Route::get('/siswa/import', ['as'=>'import','uses'=>'SiswaController@import']);
 
 });

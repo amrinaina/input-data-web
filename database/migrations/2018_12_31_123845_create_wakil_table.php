@@ -15,7 +15,7 @@ class CreateWakilTable extends Migration
     {
         Schema::create('wakil', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->nullable();
+            $table->string('family_name')->nullable();
             $table->string('nik')->nullable();
             $table->string('tahun_lahir')->nullable();
             $table->integer('pendidikan')->nullable();

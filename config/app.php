@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         // Nauvalazhar\FacadePlease\FacadePleaseServiceProvider::class,
         App\Providers\SiswaFacadeServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
 
     ],
 
@@ -226,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Siswa' => App\Ids\SiswaFacade::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

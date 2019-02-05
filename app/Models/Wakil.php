@@ -9,7 +9,7 @@ class Wakil extends Model
    protected $table = 'wakil';
     protected $fillable = [
     						'id',
-							'name',
+							'family_name',
 							'nik',
 							'tahun_lahir',
 							'pendidikan',

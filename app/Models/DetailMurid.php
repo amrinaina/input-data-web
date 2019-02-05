@@ -13,6 +13,7 @@ class DetailMurid extends Model
 							'tinggi_badan',
 							'berat_badan',
 							'jarak_sekolah',
+							'jarak_sekolah_kilometer',
 							'waktu_tempuh',
 							'jumlah_saudara_kandung'
     					  ];
