@@ -17,4 +17,7 @@ class DetailMurid extends Model
 							'waktu_tempuh',
 							'jumlah_saudara_kandung'
     					  ];
+   public function murid(){
+    	return $this->hasMany('App\Models\Murid','id','id_murid');
+    }
 }

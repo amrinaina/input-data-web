@@ -14,3 +14,17 @@ function agamaStat($val){
 
     return $status[$val];
 }
+
+function tempatStat($val){
+    $status = [
+        1 =>'<option>Bersama Orang Tua</option>',
+        2 =>'<option>Wali</option>',
+        3 =>'<option>Kos</option>',
+        4 =>'<option>Asrama</option>',
+        5 =>'<option>Panti Asuhan</option>',
+        6 =>'<option>Pesantren</option>',
+        9 =>'<option>Lainnya</option>'
+    ];
+
+    return $status[$val];
+}

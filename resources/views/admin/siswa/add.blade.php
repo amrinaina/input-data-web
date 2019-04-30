@@ -1,8 +1,16 @@
 @extends('layouts.admin')
 
 @section('breadcrumb')
-    <li><a href="#">Peserta Didik</a></li>
-    <li><a class="active">Create</a></li>
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-primary">Create Siswa</h3> </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/siswa') }}">Index</a></li>
+            <li class="breadcrumb-item active">Create</li>
+        </ol>
+    </div>
+</div>
 @endsection
 
 @section('content')
@@ -70,11 +78,9 @@
                                 <div class="form-group">
                                     <label class="control-label">Agama</label>
                                     <select class="form-control custom-select" name="agama">
-                                        <option value="">--Pilih Agama--</option>
-                                        @foreach($agama as $key => $a)
-                                            <option value="{{ $key['id'] }}">{{$a['name']}}</option>
+                                        @foreach($agama as $a)
+                                            <option value="{{ $a['id'] }}">{{$a['name']}}</option>
                                         @endforeach
-                                        
                                     </select>
                                 </div>
                             </div>
@@ -380,8 +386,8 @@
                                 <div class="form-group">
                                     <label class="control-label">Jenis Ekstrakulikuler</label>
                                     <select class="form-control custom-select" name="ekskul">
-                                        @foreach($ekskul as $key => $a)
-                                            <option value="{{ $key['id'] }}">{{$a['name']}}</option>
+                                        @foreach($ekskul as $e)
+                                            <option value="{{ $e['id'] }}">{{$e['name']}}</option>
                                         @endforeach
                                     </select>
                                 </div>

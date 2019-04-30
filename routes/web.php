@@ -19,9 +19,8 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::group(['namespace' => 'Admin'], function()
+Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
 {
-    
     
 	//Home
 	Route::get('/home', 'DashboardController@index')->name('home');
@@ -31,7 +30,7 @@ Route::group(['namespace' => 'Admin'], function()
     Route::get('/siswa/create', ['as'=>'siswa.create','uses'=>'SiswaController@add']);
     Route::post('/siswa/createprocess', ['as'=>'siswa.createprocess','uses'=>'SiswaController@addprocess']);
     Route::get('/siswa/edit/{id}', ['as'=>'siswa.edit','uses'=>'SiswaController@edit']);
-    Route::post('/siswa/editprocess/{id}', ['as'=>'siswa.editprocess','uses'=>'SiswaController@editprocess']);
+    Route::patch('/siswa/editprocess/{id}', ['as'=>'siswa.editprocess','uses'=>'SiswaController@editprocess']);
     Route::delete('/siswa/delete/{id}', ['as'=>'siswa.delete','uses'=>'SiswaController@delete']);
     Route::get('/siswa/view/{id}', ['as'=>'siswa.view','uses'=>'SiswaController@view']);
 
@@ -42,9 +41,15 @@ Route::group(['namespace' => 'Admin'], function()
     Route::get('/ekskul', ['as'=>'ekskul','uses'=>'SiswaController@ekskul']);
 
     //Export
-    Route::get('/siswa/export', ['as'=>'export','uses'=>'SiswaController@export']);
+    Route::get('/siswa/export', ['as'=>'export.index','uses'=>'SiswaController@exportindex']);
+    Route::get('/siswa/exportdata', ['as'=>'export.data','uses'=>'SiswaController@exportdata']);
+
+    Route::post('/exam_scores/export', ['as'=>'nimda.examScores.export','uses'=>'EExamController@export']);
+    Route::post('/exam_scores/getreport', ['as'=>'nimda.examScores.getReport','uses'=>'EExamController@getReport']);
+    Route::post('/exam_scores/getsubjecthotroom/{class_id}', ['as'=>'nimda.examScores.gethubjecthotroom','uses'=>'EExamController@getSubjectHotroom']);
 
     //Import
-    Route::get('/siswa/import', ['as'=>'import','uses'=>'SiswaController@import']);
+    Route::get('/siswa/import', ['as'=>'import.index','uses'=>'SiswaController@importindex']);
+    Route::post('/siswa/importdata', ['as'=>'import.data','uses'=>'SiswaController@importdata']);
 
 });

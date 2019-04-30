@@ -15,4 +15,7 @@ class Contact extends Model
 							'belongs_to',
 							'ekskul'
     					  ];
+    public function murid(){
+    	return $this->hasMany('App\Models\Murid','id','belongs_to');
+    }
 }

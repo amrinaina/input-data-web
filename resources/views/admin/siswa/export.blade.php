@@ -4,202 +4,205 @@
 @endsection
 
 @section('breadcrumb')
-    <li><a href="">ajdh</a></li>
+<div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+        <h3 class="text-primary">Index</h3> </div>
+    <div class="col-md-7 align-self-center">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{{ url('/siswa') }}">Siswa</a></li>
+            <li class="breadcrumb-item active">Index</li>
+        </ol>
+    </div>
+</div>
 @endsection
 
 @section('content')
-<div class="page-wrapper">
-    <div class="container-fluid">
-		<div class="row"> 
-			<div class="col-sm-12"> 
-				<div class="card">
-	                <div class="card-body">
-						<h3>Filter</h3>
-	                	<form class="form" role="form" method="POST" action="{{ url('siswa/export/') }}">
-                            {{ csrf_field() }}
-                            {{ method_field('POST') }}
-                            <div class="form-body">
-		                	<div class="row"> 
-	                			<div class="col-sm-12"> 
-		                			<div class="form-group">
-		                				<select name="select" id="select" class="form-control">
-			                                <option value="0">Please select NISN</option>
-			                                <option value="1">Option #1</option>
-			                                <option value="2">Option #2</option>
-			                                <option value="3">Option #3</option>
-			                            </select>
-		                			</div>
-		                		</div>
-
-		                		<div class="col-sm-12"> 
-		                			<div class="form-group">
-		                				<select name="select" id="select" class="form-control">
-			                                <option value="0">Please select Nama</option>
-			                                <option value="1">Option #1</option>
-			                                <option value="2">Option #2</option>
-			                                <option value="3">Option #3</option>
-			                            </select>
-		                			</div>
-		                		</div>
-
-		                		<div class="col-sm-12"> 
-		                			<div class="form-group">
-		                				<select name="select" id="select" class="form-control">
-			                                <option value="0">Please select Rombel</option>
-			                                <option value="1">Option #1</option>
-			                                <option value="2">Option #2</option>
-			                                <option value="3">Option #3</option>
-			                            </select>
-		                			</div>
-		                		</div>
-
-		                		<div class="col-sm-12"> 
-		                			<div class="form-group">
-		                				<select name="select" id="select" class="form-control">
-			                                <option value="0">Please select Rayon</option>
-			                                <option value="1">Option #1</option>
-			                                <option value="2">Option #2</option>
-			                                <option value="3">Option #3</option>
-			                            </select>
-		                			</div>
-		                		</div>
-
-		                		<div class="col-sm-12"> 
-		                			<button class="btn btn-info pull-right" id="submit" type="submit">Submit</button>
-		                		</div>
-		                	</div>
-		                </div>
-		            </form>
-	                </div>
-		        </div>
-		        <div class="row panel-result">
-
-				</div>
-			</div>
-		</div>
+<div class="row">
+    <div class="col-12">
+        <a type="submit" class="btn btn-success" href="{{ route('export.data') }}"><i class="fa fa-arrow-circle-right"></i> Export All</a>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Filter</h4>
+                <form class="form" role="form" method="POST" action="{{ url('/siswa/createprocess') }}">
+                    {{ csrf_field() }}
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nama</label>
+                                    <select class="form-control" name="nama">
+                                        <option>sa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nama</label>
+                                    <select class="form-control">
+                                        <option>sa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nama</label>
+                                    <select class="form-control">
+                                        <option>sa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nama</label>
+                                    <select class="form-control">
+                                        <option>sa</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="control-label">Nama</label>
+                                    <select class="form-control">
+                                        <option>sa</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Export To Excel</button>
+                        <button type="submit" class="btn btn-inverse pull-right">Submit</button>
+                    </div>
+                </form>
+                <div id="report_panel">
+                            
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
 @endsection
 
 @section('js')
-	<script>
-	    $(document).ready(function() {
-	        $('.dropify').dropify();
+<script>
+    $('#panel-result').hide();
+    $(document).ready(function() {
+        $('#myTable').DataTable();
+        var data = "";
+        $('#class_panel').hide();
+    });
 
-	        $(".panel-result").hide();
-	    });
-	</script>
+
+    $(document).on('change', '#hotroomClasses', function(e) {
+        var class_id = $('#hotroomClasses').val();
+        var data = ""; 
 
 
-	{{-- <script type="text/javascript"> 
+        if (class_id) {
+            $.ajax({
+            url: APP_URL+"{{'/nimda/exam_scores/getsubjecthotroom/'}}"+class_id,
+            dataType: "json",
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type : "POST",
+            data: { class_id:class_id},   
+            beforeSend : function(xhr){
+                swal({   
+                    title: "Data sedang di load!",   
+                    text: "Mohon tunggu sebentar.",   
+                    timer: 700,
+                    type:"success",   
+                    showConfirmButton: false 
+                });
+            },
+            success: function(result){
+                $("#hotroomSubject").empty();
+                data = '<option value="">Pilih Semua mata diklat</option>';
 
-    	var instructor_id = "{{ $instructor['id'] }}";
-		$("#classes").change(function(e){
-			var data = "";
-	        var id = $("#classes").val();
-        	$.ajax({
-	            url: APP_URL+"{{'/nimda/report/questionnaire/subjectssetclass/'}}"+id+"/"+instructor_id,
-	            dataType: "json",
-	            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-	            type : "GET",        
-	            beforeSend : function(xhr){
-	                $("#subjects-loading").show();
-		            $("#subjects").empty();
-	            },
-	            success: function(result){
-	                console.log(result);
+                $("#hotroomSubject").append(data);
+                $.each(result, function (key, v) {
+                    data = '<option value="'+key+'">'+v+'</option>';
 
-	                $("#subjects-loading").hide();
+                    $("#hotroomSubject").append(data);
+                });
 
-    				data += '<select id="subject_id" name="subject_id" class="form-control selectpicker" data-live-search="true">'
-		                $.each(result, function (key, v) {
-		                	data += '<option value="'+key+'">'+v+'</option>';
-		             	});	
-    				data += '</select>';
+            }
+        });
 
-		            $("#subjects").append(data);
-			        $('.selectpicker').selectpicker();
+        }else{
+            $("#hotroomSubject").empty();
+            data = '<option value="">Silahkan pilih kelas terlebih dahulu</option>';
 
-	            }
-	        })
-		});
+            $("#hotroomSubject").append(data);
+        }
 
-		$("#submit").click(function(e){
-			e.preventDefault();
-	        var id = $("#classes").val();
-	        var program_id = $("#program_id").val();
-	        var subject_id = $("#subject_id").val();
-	        var data = "";
+    });
 
-	        if (id) {
-	        	$.ajax({
-		            url: APP_URL+"{{'/nimda/report/questionnaire/gethead/'}}"+id+"/"+program_id+"/"+subject_id,
-		            dataType: "json",
-		            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-		            type : "POST",
-		            data : { class_id : id },          
-		            beforeSend : function(xhr){
-	                	$("#result-loading").show();
-	        			$(".panel-result").hide();
+    function submitReport(){
 
-		            },
-		            success: function(result){
-	                	$("#result-loading").hide();
-	        			$(".panel-result").show();
-		            	if (result.total == 0) {
-				        	swal({   
-					            title: "Data Kosong!",   
-					            text: "Maaf, data tidak ditemukan",   
-					            type: "warning",       
-					            showConfirmButton: false,   
-					            closeOnConfirm: true,
-					            timer : 2500 
-					        })
-		            	}else{
-			                console.table(result);
-							$("#detail-result").empty();
+        var data = ""; 
+        $.ajax({
+            url: APP_URL+"{{'/nimda/exam_scores/getreport'}}",
+            dataType: "json",
+            headers : {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            type : "POST",
+            data: {class_id:class_id},   
+            beforeSend : function(xhr){
+                $('#report_panel').empty();
+                $("#loading").show();
+                $('#panel-result').hide();
+            },
+            success: function(result){
+                      data +=  '<div class="table-responsive">';     
+                          data +=  '<table id="myTable" class="table table-striped">';
+                            data +=  '<thead>';
+                              data +=  '<tr>';
+                                data +=  '<th width="5%">No</th>';
+                                data +=  '<th>NIS</th>';
+                                data +=  '<th>Nama</th>';
+                                data +=  '<th>Kelas</th>';
+                                data +=  '<th>Mata Diklat</th>';
+                                data +=  '<th>E-Exam</th>';
+                              data +=  '</tr>';
+                            data +=  '</thead>';
+                            data +=  '<tbody>';
+                                var no = 1;
+                                var tot = 0;
+                                var tot_tdk_lulus = 0;
+                                var tot_lulus = 0;
+                                $.each(result.detail, function (key, v) {
+                                    data += "<tr>";
+                                        data += "<td class='text-center'>"+no;
+                                        data += "</td>";
+                                        data += "<td>"+v.nis;
+                                        data += "</td>";
+                                        data += "<td>"+v.student;
+                                        data += "</td>";
+                                        data += "<td>"+v.classes;
+                                        data += "</td>";
+                                        data += "<td>"+v.subject;
+                                        data += "</td>";
+                                        data += "<td>"+v.name;
+                                    data += "</tr>";
+                                    no++;
+                                });
 
-			                var i =1;
-							data += '<table class="table table-striped" id="myTable">';
-								data += '<thead>';
-									data += '<tr>';
-										data += '<th width="10%">No</th>';
-										data += '<th >NIS</th>';
-										data += '<th>Nama</th>';
-										data += '<th width="15%">Action</th>';
-									data += '</tr>';
-								data += '</thead>';
-								data += '<tbody>';
-					                $.each(result.detail, function (key, v) {
-			                        	data += '<tr>';
-							                data += '<td>'+i+'</td>';
-							                data += '<td>'+v.nis+'</td>';
-							                data += '<td>'+v.name+'</td>';
-							                data += '<td>';
-				                    		data += '<a class="btn btn-info" href="detail/'+instructor_id+'/'+v.questionnaire_score_id+'">View</a>';
-							                data += '</td>';
-						                data += '</tr>';
-						                i++;
-			                    	});
-								data += '</tbody>';
-							data += '</table>';
+                            data +=  '</tbody>';
+                          data +=  '</table>';
+                      data +=  '</div>';
 
-							$("#detail-result").append(data);
-							$("#card-total").html(result.total);
-							$("#card-not").html(result.total_not_done);
-							$("#card-done").html(result.total_done);
-							$("#myTable").dataTable();
-		            	}
+                $('#panel-result').show(500);
 
-		            }
+                $('#report_panel').append(data);
+                $('#myTable').DataTable();
+                $("#loading").hide();
 
-		        })
-	        }else{
-	        	$("#tbody").empty();
-	        	alert("Gagal");
-	        }
-	        
-		});
-	</script> --}}
+            },
+            error: function(){
+                console.log("gagal");
+            }
+        })
+
+    }
+</script>
 @endsection

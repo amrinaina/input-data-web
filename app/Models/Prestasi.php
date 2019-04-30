@@ -16,4 +16,7 @@ class Prestasi extends Model
 							'tahun',
 							'penyelenggara'
     					  ];
+    public function murid(){
+    	return $this->belongsTo('App\Models\Murid','id','id_murid');
+    }
 }

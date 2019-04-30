@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Wakil extends Model
 {
-   protected $table = 'wakil';
+   	protected $table = 'wakil';
     protected $fillable = [
     						'id',
+    						'id_murid',
 							'family_name',
 							'nik',
 							'tahun_lahir',

@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-body">
                 <form class="form-horizontal" role="form" method="POST" action="{{ route('siswa.editprocess',$murid['id']) }}">
-                    {{ csrf_field() }}
+                    {{ csrf_field() }} {{ method_field('PATCH') }}
                     <div class="form-body">
                         <div class="card-header">
                             <strong class="card-title">Siswa</strong>
@@ -65,23 +65,13 @@
                                 <div class="form-group">
                                     <label class="control-label">Agama</label>
                                     <select class="form-control custom-select" name="agama">
-                                        @if($murid['agama']==1)
-                                            <option value="1" selected="">Islam</option>
-                                        @elseif($murid['agama']==2)
-                                            <option value="2" selected="">Kristen/ Protestan</option>
-                                        @elseif($murid['agama']==3)
-                                            <option value="3" selected="">Katholik</option>
-                                        @elseif($murid['agama']==4)
-                                            <option value="4" selected="">Hindu</option>
-                                        @elseif($murid['agama']==5)
-                                            <option value="5" selected="">Budha</option>
-                                        @elseif($murid['agama']==6)
-                                            <option value="6" selected="">Khong Hu Chu</option>
-                                        @elseif($murid['agama']==7)
-                                            <option value="7" selected="">Kepercayaan Kpd Tuan YME</option>
-                                        @elseif($murid['agama']==99)
-                                            <option value="99" selected="">Lainnya</option>
-                                        @endif
+                                        @foreach($agama as $a)
+                                            @if($a->id == $murid->agama)
+                                                <option value="{{ $a->id }}" selected>{{ $a->name }}</option>
+                                            @else
+                                                <option value="{{ $a->id }}">{{ $a->name }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -479,9 +469,13 @@
                                 <div class="form-group">
                                     <label class="control-label">Jenis Ekstrakulikuler</label>
                                     <select class="form-control custom-select" name="ekskul">
-                                       {{--  @foreach($ekskul as $key => $a)
-                                            <option value="{{ $key['id'] }}">{{$a['name']}}</option>
-                                        @endforeach --}}
+                                      @foreach($ekskul as $a)
+                                            @if($a->id == $murid->ekskul)
+                                                <option value="{{ $a->id }}" selected>{{ $a->name }}</option>
+                                            @else
+                                                <option value="{{ $a->id }}">{{ $a->name }}</option>
+                                            @endif
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -621,21 +615,21 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Keterangan</label>
-                                    <input type="text" name="keterangan" class="form-control" placeholder="Keterangan">
+                                    <input type="text" name="keterangan" class="form-control" placeholder="Keterangan" value="{{ $beasiswa['keterangan'] }}">
                                     <p style="color:#83b1e2;"><strong>*</strong> Keterangan terkait beasiswa yang pernah diterima oleh peserta didik. Misalnya dapat diisi dengan nama beasiswa, seperti Beasiswa Murid Berprestasi Tahun 2017, atau keterangan lain yang relevan</p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Tahun Mulai</label>
-                                    <input type="text" name="tahun_mulai" class="form-control" placeholder="Tahun Mulai">
+                                    <input type="text" name="tahun_mulai" class="form-control" placeholder="Tahun Mulai" value="{{ $beasiswa['tahun_mulai'] }}">
                                     <p style="color:#83b1e2;"><strong>*</strong> Tahun mulai diterimanya beasiswa oleh peserta didik</p>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Tahun Selesai</label>
-                                    <input type="text" name="tahun_selesai" class="form-control" placeholder="Tahun Selesai">
+                                    <input type="text" name="tahun_selesai" class="form-control" placeholder="Tahun Selesai" value="{{ $beasiswa['tahun_selesai'] }}">
                                     <p style="color:#83b1e2;"><strong>*</strong> Tahun selesai diterimanya beasiswa oleh peserta didik. Apabila beasiswa tersebut hanya diterima sekali dalam tahun yang sama, maka diisi sama seperti Tahun Mulai</p>
                                 </div>
                             </div>

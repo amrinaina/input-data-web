@@ -16,4 +16,8 @@ class Beasiswa extends Model
 							'tahun_mulai',
 							'tahun_selesai'
     					  ];
+
+    public function murid(){
+    	return $this->hasMany('App\Models\Murid','id','id_murid');
+    }
 }

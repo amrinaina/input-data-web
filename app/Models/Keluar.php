@@ -14,4 +14,7 @@ class Keluar extends Model
 							'detail_alasan',
 							'id_murid'
     					  ];
+    public function murid(){
+    	return $this->belongsTo('App\Models\Murid','id','id_murid');
+    }
 }
