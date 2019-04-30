@@ -111,6 +111,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ URL::to('/ekskul') }}"></i> Ekskul </a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ URL::to('/registrasi') }}"></i> Registrasi Murid </a>
+                                    </li>
                                 </ul>
                             </li>
                         </li>

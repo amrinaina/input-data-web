@@ -52,4 +52,18 @@ Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
     Route::get('/siswa/import', ['as'=>'import.index','uses'=>'SiswaController@importindex']);
     Route::post('/siswa/importdata', ['as'=>'import.data','uses'=>'SiswaController@importdata']);
 
+    //Registrasi
+    Route::get('/registrasi', ['as'=>'registrasi','uses'=>'RegistrasiController@index']);
+    Route::get('/registrasi/create', ['as'=>'registrasi.create','uses'=>'RegistrasiController@add']);
+    Route::post('/registrasi/createprocess', ['as'=>'registrasi.createprocess','uses'=>'RegistrasiController@addprocess']);
+    Route::get('/registrasi/edit/{id}', ['as'=>'registrasi.edit','uses'=>'RegistrasiController@edit']);
+    Route::patch('/registrasi/editprocess/{id}', ['as'=>'registrasi.editprocess','uses'=>'RegistrasiController@editprocess']);
+    Route::delete('/registrasi/delete/{id}', ['as'=>'registrasi.delete','uses'=>'RegistrasiController@delete']);
+    Route::get('/registrasi/view/{id}', ['as'=>'registrasi.view','uses'=>'RegistrasiController@view']);
+
+    Route::get('/registrasi/export', ['as'=>'exportregister.index','uses'=>'RegistrasiController@exportindex']);
+    Route::get('/registrasi/exportdata', ['as'=>'exportregister.data','uses'=>'RegistrasiController@exportdata']);
+    Route::get('/registrasi/import', ['as'=>'importregister.index','uses'=>'RegistrasiController@importindex']);
+    Route::post('/registrasi/importdata', ['as'=>'importregister.data','uses'=>'RegistrasiController@importdata']);
+
 });

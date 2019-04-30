@@ -75,8 +75,8 @@ class SiswaController extends Controller
       unset($req['_method']);
 
      $murid = Murid::find($id);
-        $murid->murid()->saveMany([
-            new Wakil([
+        $murid->murid()->update([
+             new Wakil([
                 'family_name'=>$req['family_name'],
                 'id_murid'=>$id,
                 'nik'=>$req['nik'],
@@ -86,7 +86,7 @@ class SiswaController extends Controller
                 'penghasilan_bulanan'=>$req['penghasilan_bulanan'],
                 'type'=>$req['type']
             ]),
-            new Murid([
+             new Murid([
                 'name'=>$req['name'],
                 'jk'=>$req['jk'],
                 'nisn'=>$req['nisn'],
@@ -122,14 +122,14 @@ class SiswaController extends Controller
                 'id_wakil'=>$id
 
             ]),
-            new Contact([
+             new Contact([
                 'nomor_telepon_rumah'=> $req['nomor_telepon_rumah'],
                 'nomor_hp' => $req['nomor_hp'],
                 'email' => $req['email'],
                 'belongs_to' => $id,
                 'ekskul' => $req['ekskul']
             ]),
-            new DetailMurid([
+             new DetailMurid([
                 'id_murid'=>$id,
                 'tinggi_badan'=>$req['tinggi_badan'],
                 'berat_badan'=>$req['berat_badan'],
@@ -138,7 +138,7 @@ class SiswaController extends Controller
                 'waktu_tempuh'=>$req['waktu_tempuh'],
                 'jumlah_saudara_kandung'=>$req['jumlah_saudara_kandung']
             ]),
-            new Prestasi([
+             new Prestasi([
                 'id_murid'=>$id,
                 'jenis'=>$req['jenis'],
                 'tingkat'=>$req['tingkat'],
@@ -146,7 +146,7 @@ class SiswaController extends Controller
                 'tahun'=>$req['tahun'],
                 'penyelenggara'=>$req['penyelenggara']
             ]),
-            new Beasiswa([
+             new Beasiswa([
                 'id_murid'=>$id,
                 'jenis'=>$req['jenis'],
                 'keterangan'=>$req['keterangan'],

@@ -14,7 +14,7 @@ use App\Models\Keluar;
 use App\Models\Kota;
 use App\Models\Murid;
 use App\Models\Prestasi;
-use App\Models\RegisterMurid;
+use App\Models\RegistrasiMurid;
 use App\Models\Wakil;
 use Auth;
 
@@ -311,6 +311,50 @@ class SiswaClassFacade {
     public function getView($id){
         
         $data = Murid::find($id);
+        return $data;
+    }
+
+    //Registrasi
+    public function indexregister(){
+        $data = RegistrasiMurid::all();
+        return $data;
+    }
+    public function createregister($data){
+        $register = RegistrasiMurid::create([
+            'id_murid'=>$data['id_murid'],
+            'jurusan'=>$data['jurusan'],
+            'jenis'=>$data['jenis'],
+            'nis'=>$data['nis'],
+            'tanggal_masuk'=>$data['tanggal_masuk'],
+            'asal_sekolah'=>$data['asal_sekolah'],
+            'no_peserta_ujian'=>$data['no_peserta_ujian'],
+            'nomor_seri_ijazah'=>$data['nomor_seri_ijazah'],
+            'nomor_seri_skhus'=>$data['nomor_seri_skhus']
+        ]);
+
+    }
+
+    public function jurusan(){
+        $jurusan = Jurusan::all();
+        return $jurusan;
+    }
+
+     public function editregister($id){
+        $data = RegistrasiMurid::find($id);
+
+        return $data;
+    }
+
+    // public function updateregister($id,$data){
+    //     unset($data['_token']);
+    //     unset($data['_method']);
+
+    //     $update = RegisterMurid::where(['id'=>$id])->update($data);
+    //     return $update;
+    // }
+
+    public function deleteregister($id){
+        $data = RegistrasiMurid::where('id',$id)->delete();
         return $data;
     }
 
