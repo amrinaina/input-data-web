@@ -28,3 +28,18 @@ function tempatStat($val){
 
     return $status[$val];
 }
+
+function modaStat($val){
+    $status = [
+        1 =>'<option value="1">Jalan Kaki</option>',
+        2 =>'<option value="2">Kendaraan Pribadi</option>',
+        3 =>'<option value="3">Kendaraan umum / Pete-pete</option>',
+        4 =>'<option value="4">Jemputan Sekolah</option>',
+        5 =>'<option value="5">Kereta Api</option>',
+        6 =>'<option value="6">Ojeg</option>',
+        7 =>'<option value="7">Andong/Bendi/Sado/ Dokar/Delman/Beca</option>',
+        8 =>'<option value="8">Perahu penyebrangan/Rakit/Getek</option>',
+        99 =>'<option value="99">Lainnya</option>'
+    ];
+    return $status[$val];
+}

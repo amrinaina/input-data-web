@@ -141,21 +141,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Tempat Tinggal</label>
                                     <select class="form-control custom-select" name="tempat_tinggal">
-                                        @if($murid['tempat_tinggal']==1)
-                                            <option value="1">Bersama Orang Tua</option>
-                                        @elseif($murid['tempat_tinggal']==2)
-                                            <option value="2">Wali</option>
-                                        @elseif($murid['tempat_tinggal']==3)
-                                            <option value="3">Kos</option>
-                                        @elseif($murid['tempat_tinggal']==4)
-                                            <option value="4">Asrama</option>
-                                        @elseif($murid['tempat_tinggal']==5)
-                                            <option value="5">Panti Asuhan</option>
-                                        @elseif($murid['tempat_tinggal']==6)
-                                            <option value="6">Pesantren</option>
-                                        @elseif($murid['tempat_tinggal']==9)
-                                            <option value="9">Lainnya</option>
-                                        @endif
+                                        {!! tempatStat($murid['tempat_tinggal']) !!}
                                     </select>
                                 </div>
                             </div>
@@ -163,25 +149,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Moda Transportasi</label>
                                     <select class="form-control custom-select" name="moda_transportasi">
-                                        @if($murid['moda_transportasi']==1)
-                                            <option value="1">Jalan Kaki</option>
-                                        @elseif($murid['moda_transportasi']==2)
-                                            <option value="2">Kendaraan Pribadi</option>
-                                        @elseif($murid['moda_transportasi']==3)
-                                            <option value="3">Kendaraan umum / Pete-pete</option>
-                                        @elseif($murid['moda_transportasi']==4)
-                                            <option value="4">Jemputan Sekolah</option>
-                                        @elseif($murid['moda_transportasi']==5)
-                                            <option value="5">Kereta Api</option>
-                                        @elseif($murid['moda_transportasi']==6)
-                                            <option value="6">Ojeg</option>
-                                        @elseif($murid['moda_transportasi']==7)
-                                            <option value="7">Andong/Bendi/Sado/ Dokar/Delman/Beca</option>
-                                        @elseif($murid['moda_transportasi']==8)
-                                            <option value="8">Perahu penyebrangan/Rakit/Getek</option>
-                                        @elseif($murid['moda_transportasi']==99)
-                                            <option value="99">Lainnya</option>
-                                        @endif
+                                        {!! modaStat($murid['moda_transportasi']) !!}
                                     </select>
                                 </div>
                             </div>

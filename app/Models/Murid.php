@@ -17,7 +17,7 @@ class Murid extends Model
 	}
 
 	public function murid(){
-    	return $this->hasMany('App\Models\Wakil','id','id_murid');
+    	return $this->belongsTo('App\Models\Wakil','id','id_murid');
     }
 
 }

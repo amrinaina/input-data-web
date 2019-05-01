@@ -74,94 +74,89 @@ class SiswaController extends Controller
       unset($req['_token']);
       unset($req['_method']);
 
-     $murid = Murid::find($id);
-        $murid->murid()->update([
-             new Wakil([
-                'family_name'=>$req['family_name'],
-                'id_murid'=>$id,
-                'nik'=>$req['nik'],
-                'tahun_lahir'=>$req['tahun_lahir'],
-                'pendidikan'=>$req['pendidikan'],
-                'pekerjaan'=>$req['pekerjaan'],
-                'penghasilan_bulanan'=>$req['penghasilan_bulanan'],
-                'type'=>$req['type']
-            ]),
-             new Murid([
-                'name'=>$req['name'],
-                'jk'=>$req['jk'],
-                'nisn'=>$req['nisn'],
-                'nik'=>$req['nik'],
-                'tempat_lahir'=>$req['tempat_lahir'],
-                'tanggal_lahir'=>$req['tanggal_lahir'],
-                'no_register_akta_lahir'=>$req['no_register_akta_lahir'],
-                'agama'=>$req['agama'],
-                'kewarganegaraan'=>$req['kewarganegaraan'],
-                'nama_negara'=>$req['nama_negara'],
-                'alamat_jalan'=>$req['alamat_jalan'],
-                'rt'=>$req['rt'],
-                'rw'=>$req['rw'],
-                'nama_dusun'=>$req['nama_dusun'],
-                'kelurahan_desa'=>$req['kelurahan_desa'],
-                'kecamatan'=>$req['kecamatan'],
-                'kode_pos'=>$req['kode_pos'],
-                'tempat_tinggal'=>$req['tempat_tinggal'],
-                'moda_transportasi'=>$req['moda_transportasi'],
-                'nomor_kks'=>$req['nomor_kks'],
-                'anak_keberapa'=>$req['anak_keberapa'],
-                'penerima_kps'=>$req['penerima_kps'],
-                'nomor_kps'=>$req['nomor_kps'],
-                'usulan_sekolah'=>$req['usulan_sekolah'],
-                'penerima_kip'=>$req['penerima_kip'],
-                'nomor_kip'=>$req['nomor_kip'],
-                'nama_di_kip'=>$req['nama_di_kip'],
-                'terima_fisik_kartu'=>$req['terima_fisik_kartu'],
-                'alasan_layak'=>$req['alasan_layak'],
-                'bank'=>$req['bank'],
-                'nomor_rekening'=>$req['nomor_rekening'],
-                'rekening_holder'=>$req['rekening_holder'],
-                'id_wakil'=>$id
+    $murid = Murid::find($id);
+    $murid->name = $req['name'];
+    $murid->jk = $req['jk'];
+    $murid->nisn = $req['nisn'];
+    $murid->nik = $req['nik'];
+    $murid->tempat_lahir = $req['tempat_lahir'];
+    $murid->tanggal_lahir = $req['tanggal_lahir'];
+    $murid->no_register_akta_lahir = $req['no_register_akta_lahir'];
+    $murid->agama = $req['agama'];
+    $murid->kewarganegaraan = $req['kewarganegaraan'];
+    $murid->nama_negara = $req['nama_negara'];
+    $murid->alamat_jalan = $req['alamat_jalan'];
+    $murid->rt = $req['rt'];
+    $murid->rw = $req['rw'];
+    $murid->nama_dusun = $req['nama_dusun'];
+    $murid->kelurahan_desa = $req['kelurahan_desa'];
+    $murid->kecamatan = $req['kecamatan'];
+    $murid->kode_pos = $req['kode_pos'];
+    $murid->tempat_tinggal = $req['tempat_tinggal'];
+    $murid->moda_transportasi = $req['moda_transportasi'];
+    $murid->nomor_kks = $req['nomor_kks'];
+    $murid->anak_keberapa = $req['anak_keberapa'];
+    $murid->penerima_kps = $req['penerima_kps'];
+    $murid->nomor_kps = $req['nomor_kps'];
+    $murid->usulan_sekolah = $req['usulan_sekolah'];
+    $murid->penerima_kip = $req['penerima_kip'];
+    $murid->nomor_kip = $req['nomor_kip'];
+    $murid->nama_di_kip = $req['nama_di_kip'];
+    $murid->terima_fisik_kartu = $req['terima_fisik_kartu'];
+    $murid->alasan_layak = $req['alasan_layak'];
+    $murid->bank = $req['bank'];
+    $murid->nomor_rekening = $req['nomor_rekening'];
+    $murid->rekening_holder = $req['rekening_holder'];
+    $murid->id_wakil = $id;
+    $murid->save();
 
-            ]),
-             new Contact([
-                'nomor_telepon_rumah'=> $req['nomor_telepon_rumah'],
-                'nomor_hp' => $req['nomor_hp'],
-                'email' => $req['email'],
-                'belongs_to' => $id,
-                'ekskul' => $req['ekskul']
-            ]),
-             new DetailMurid([
-                'id_murid'=>$id,
-                'tinggi_badan'=>$req['tinggi_badan'],
-                'berat_badan'=>$req['berat_badan'],
-                'jarak_sekolah'=>$req['jarak_sekolah'],
-                'jarak_sekolah_kilometer'=>$req['jarak_sekolah_kilometer'],
-                'waktu_tempuh'=>$req['waktu_tempuh'],
-                'jumlah_saudara_kandung'=>$req['jumlah_saudara_kandung']
-            ]),
-             new Prestasi([
-                'id_murid'=>$id,
-                'jenis'=>$req['jenis'],
-                'tingkat'=>$req['tingkat'],
-                'nama'=>$req['nama'],
-                'tahun'=>$req['tahun'],
-                'penyelenggara'=>$req['penyelenggara']
-            ]),
-             new Beasiswa([
-                'id_murid'=>$id,
-                'jenis'=>$req['jenis'],
-                'keterangan'=>$req['keterangan'],
-                'tahun_mulai'=>$req['tahun_mulai'],
-                'tahun_selesai'=>$req['tahun_selesai']
-            ]),
+    $wakil = Wakil::find($id);
+    $wakil->family_name = $req['family_name'];
+    $wakil->id_murid = $id;
+    $wakil->nik = $req['nik'];
+    $wakil->tahun_lahir = $req['tahun_lahir'];
+    $wakil->pendidikan = $req['pendidikan'];
+    $wakil->pekerjaan = $req['pekerjaan'];
+    $wakil->penghasilan_bulanan = $req['penghasilan_bulanan'];
+    $wakil->type = $req['type'];
+    $wakil->save();
 
-        ]);
-        
+    $contact = Contact::find($id);
+    $contact->nomor_telepon_rumah = $req['nomor_telepon_rumah'];
+    $contact->nomor_hp = $req['nomor_hp'];
+    $contact->email = $req['email'];
+    $contact->belongs_to = $id;
+    $contact->ekskul = $req['ekskul'];
+    $contact->save();
 
-      // if ($req->all()) {
-      //     return redirect('siswa')->with(['message' => 'Data berhasil diubah!']);
-      // }else{
-      //     return redirect('siswa')->with(['message' => 'Data gagal diubah!']);
-      // }
+    $detail = DetailMurid::find($id);
+    $detail->id_murid = $id;
+    $detail->tinggi_badan = $req['tinggi_badan'];
+    $detail->berat_badan = $req['berat_badan'];
+    $detail->jarak_sekolah = $req['jarak_sekolah'];
+    $detail->jarak_sekolah_kilometer = $req['jarak_sekolah_kilometer'];
+    $detail->waktu_tempuh = $req['waktu_tempuh'];
+    $detail->jumlah_saudara_kandung = $req['jumlah_saudara_kandung'];
+    $detail->save();
+
+    $prestasi = Prestasi::find($id);
+    $prestasi->id_murid = $id;
+    $prestasi->jenis = $req['jenis'];
+    $prestasi->tingkat = $req['tingkat'];
+    $prestasi->nama = $req['nama'];
+    $prestasi->tahun = $req['tahun'];
+    $prestasi->penyelenggara = $req['penyelenggara'];
+    $prestasi->save();
+
+    $beasiswa = Beasiswa::find($id);
+    $beasiswa->id_murid = $id;
+    $beasiswa->jenis = $req['jenis'];
+    $beasiswa->keterangan = $req['keterangan'];
+    $beasiswa->tahun_mulai = $req['tahun_mulai'];
+    $beasiswa->tahun_selesai = $req['tahun_selesai'];
+    $beasiswa->save();
+
+    return redirect('siswa')->with(['message' => 'Data berhasil diubah!']);
   }
 
   public function delete(Request $req,$id){
