@@ -15,7 +15,7 @@ class UserController extends Controller
     }
 
     public function add(){
-    	return view('admin.user.create');
+    	return view('admin.user.add');
     }
 
     public function addprocess(Request $request){
@@ -31,9 +31,9 @@ class UserController extends Controller
         $create = User::create($input);
 
         if ($create) {
-            return back()->with(['message' => 'Data pegawai berhasil diinput','type' => 'success']);
+            return back()->with(['message' => 'Data berhasil diinput','type' => 'success']);
         }else{
-            return back()->with(['message' => 'Data pegawai gagal diinput','type' => 'danger']);
+            return back()->with(['message' => 'Data gagal diinput','type' => 'danger']);
         }
     }
 

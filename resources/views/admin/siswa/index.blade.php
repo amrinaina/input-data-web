@@ -17,7 +17,7 @@
 <div class="row">
     <div class="col-12">
         <a type="submit" class="btn btn-warning" href="{{ url('/siswa/import') }}"><i class="fa fa-arrow-circle-left"></i> Import</a>
-        <a type="submit" class="btn btn-success" href="{{ route('export.index') }}"><i class="fa fa-arrow-circle-right"></i> Export</a>
+        <a type="submit" class="btn btn-success" href="{{ route('export.data') }}"><i class="fa fa-arrow-circle-right"></i> Export</a>
         <a type="submit" class="btn btn-info" href="{{ url('/siswa/create') }}"><i class="fa fa-plus-square"></i> Create</a>
     </div>
     <br><br>

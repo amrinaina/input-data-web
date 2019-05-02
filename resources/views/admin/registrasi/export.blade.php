@@ -23,56 +23,42 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Filter</h4>
-                <form class="form" role="form" method="POST" action="{{ url('/registrasi/createprocess') }}">
+                <form class="form" role="form" method="POST" action="{{ route('exportregister.hasilfilter') }}">
                     {{ csrf_field() }}
-                    <div class="form-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <select class="form-control" name="nama">
-                                        <option>sa</option>
+                    <header class="panel-heading">          
+                        <h2 class="panel-title">Masukan data level</h2>
+                    </header>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label class="col-md-3 control-label" for="inputTooltip1">Nama level</label>
+                            <div class="col-md-6">
+                                @if(count($data))
+                                    <select data-plugin-selectTwo class="form-control populate selecttwo" name="nis">
+                                        @foreach($data as $key => $val)
+                                            <option value="{{$val->id}}">{{$val->nis}}</option> 
+                                        @endforeach
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <select class="form-control">
-                                        <option>sa</option>
+                                @else
+                                    <select class="form-control" disabled="">
+                                        <option>Input terlebih dahulu data ruang</option>
                                     </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <select class="form-control">
-                                        <option>sa</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <select class="form-control">
-                                        <option>sa</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label class="control-label">Nama</label>
-                                    <select class="form-control">
-                                        <option>sa</option>
-                                    </select>
-                                </div>
+                                @endif
                             </div>
                         </div>
                     </div>
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-success pull-right"> <i class="fa fa-check"></i> Export To Excel</button>
-                        <button type="submit" class="btn btn-inverse pull-right">Submit</button>
-                    </div>
+                    <footer class="panel-footer">
+                        <div class="form-group">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6" align="right">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-check"></i>
+                                     Filter
+                                </button>
+
+                                <a href="{{ route('registrasi') }}" class="btn btn-default">Kembali</a>
+                            </div>
+                        </div>
+                    </footer>
                 </form>
                 <div id="report_panel">
                             
@@ -82,4 +68,9 @@
     </div>
 </div>
 
+@endsection
+@section('script')
+    <script type="text/javascript">
+        $(".selecttwo").select2();
+    </script>
 @endsection

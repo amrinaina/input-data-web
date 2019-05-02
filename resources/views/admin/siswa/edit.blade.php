@@ -35,11 +35,9 @@
                                 <div class="form-group">
                                     <label class="control-label">Jenis Kelamin</label>
                                     <div class="checkbox checkbox-inverse checkbox-circle">
-                                        <input id="jk" class="selectCb" value="l" name="jk" type="checkbox">
-                                        <label for="checkbox-15">Laki-laki</label>
+                                        <input type="radio"  id="l" name="jk" value="l"  {{ ($murid->jk=="l")? "checked" : "" }} >Laki-laki</label>
 
-                                        <input id="jk" class="selectCb" value="p" name="jk" type="checkbox"> 
-                                        <label for="checkbox-15">Perempuan</label>
+                                        <input type="radio" id="p" name="jk" value="p" {{ ($murid->jk=="p")? "checked" : "" }} >Perempuan</label>
                                     </div>
                                 </div>
                             </div>
@@ -243,25 +241,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Alasan Layak</label>
                                     <select class="form-control custom-select" name="alasan_layak">
-                                        @if($murid['terima_fisik_kartu'] == 1)
-                                            <option value="1">Pemegang PKH/KPS/KIP</option>
-                                        @elseif($murid['terima_fisik_kartu']==2)
-                                            <option value="2">Penerima BSM 2014</option>
-                                        @elseif($murid['terima_fisik_kartu']==3)
-                                            <option value="3">Yatim Piatu/Panti Asuhan/Panti Sosia</option>
-                                        @elseif($murid['terima_fisik_kartu']==4)
-                                            <option value="4">Dampak Bencana Alam</option>
-                                        @elseif($murid['terima_fisik_kartu']==5)
-                                            <option value="5">Prenah Drop OUT</option>
-                                        @elseif($murid['terima_fisik_kartu']==6)
-                                            <option value="6">Siswa Miskin/Rentan Miskin</option>
-                                        @elseif($murid['terima_fisik_kartu']==7)
-                                            <option value="7">Daerah Konflik</option>
-                                        @elseif($murid['terima_fisik_kartu']==8)
-                                            <option value="8">Keluarga Terpidna</option>
-                                        @elseif($murid['terima_fisik_kartu']==9)
-                                            <option value="9">Kelainan Fisik</option>
-                                        @endif
+                                        {!! alasanStat($murid['alasan_layak']) !!}
                                     </select>
                                 </div>
                             </div>
@@ -293,13 +273,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Sebagai</label>
                                     <select class="form-control custom-select" name="type">
-                                        @if($wakil['type'] == 1)
-                                            <option value="1">Ayah Kandung</option>
-                                        @elseif($wakil['type'] == 2)
-                                            <option value="2">Ibu Kandung</option>
-                                        @else
-                                            <option value="3">Wali</option>
-                                        @endif
+                                        {!! typeStat($wakil['type']) !!}
                                     </select>
                                 </div>
                             </div>
@@ -325,29 +299,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Pendidikan</label>
                                     <select class="form-control custom-select" name="pendidikan">
-                                        @if($wakil['pendidikan'] == 1)
-                                            <option value="1">Tidak Sekolah</option>
-                                        @elseif($wakil['pendidikan'] == 2)
-                                            <option value="2">Putus SD</option>
-                                        @elseif($wakil['pendidikan'] == 3)
-                                            <option value="3">SD Sederajat</option>
-                                        @elseif($wakil['pendidikan'] == 4)
-                                            <option value="4">SMP Sederajat</option>
-                                        @elseif($wakil['pendidikan'] == 5)
-                                            <option value="5">SMA Sederajat</option>
-                                        @elseif($wakil['pendidikan'] == 6)
-                                            <option value="6">D1</option>
-                                        @elseif($wakil['pendidikan'] == 7)
-                                            <option value="7">D2</option>
-                                        @elseif($wakil['pendidikan'] == 8)
-                                            <option value="8">D3</option>
-                                        @elseif($wakil['pendidikan'] == 9)
-                                            <option value="9">D4/S1</option>
-                                        @elseif($wakil['pendidikan'] == 10)
-                                            <option value="10">S2</option>.
-                                        @else
-                                            <option value="11">S3</option>
-                                        @endif
+                                        {!! pendStat($wakil['pendidikan']) !!}
                                     </select>
                                 </div>
                             </div>
@@ -355,35 +307,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Pekerjaan</label>
                                     <select class="form-control custom-select" name="pekerjaan">
-                                        @if($wakil['pekerjaan'] == 1)
-                                            <option value="1">Tidak Bekerja</option>
-                                        @elseif($wakil['pekerjaan'] == 2)
-                                            <option value="2">Nelayan</option>
-                                        @elseif($wakil['pekerjaan'] == 3)
-                                            <option value="3">Petani</option>
-                                        @elseif($wakil['pekerjaan'] == 4)
-                                            <option value="4">Peternak</option>
-                                        @elseif($wakil['pekerjaan'] == 5)
-                                            <option value="5">PNS/TNI/POLRI</option>
-                                        @elseif($wakil['pekerjaan'] == 6)
-                                            <option value="6">Karyawan Swasta</option>
-                                        @elseif($wakil['pekerjaan'] == 7)
-                                            <option value="7">Pedagang Kecil</option>
-                                        @elseif($wakil['pekerjaan'] == 8)
-                                            <option value="8">Pedagang Besar</option>
-                                        @elseif($wakil['pekerjaan'] == 9)
-                                            <option value="9">Wiraswasta</option>
-                                        @elseif($wakil['pekerjaan'] == 10)
-                                            <option value="10">Wirausaha</option>
-                                        @elseif($wakil['pekerjaan'] == 11)
-                                            <option value="11">Buruh</option>
-                                        @elseif($wakil['pekerjaan'] == 12)
-                                            <option value="12">Pensiunan</option>
-                                        @elseif($wakil['pekerjaan'] == 13)
-                                            <option value="13">Meninggal Dunia</option>
-                                        @else
-                                            <option value="14">Lain-lain</option>
-                                        @endif
+                                        {!! pekerStat($wakil['pekerjaan']) !!}
                                     </select>
                                 </div>
                             </div>
@@ -391,21 +315,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Penghasilan Bulanan</label>
                                     <select class="form-control custom-select" name="penghasilan_bulanan">
-                                        @if($wakil['penghasilan_bulanan'] == 1)
-                                            <option value="1">Kurang dari 500,000</option>
-                                        @elseif($wakil['penghasilan_bulanan'] == 2)
-                                            <option value="2">500.000 - 999.9999</option>
-                                        @elseif($wakil['penghasilan_bulanan'] == 3)
-                                            <option value="3">1 juta - 1.999.999</option>
-                                        @elseif($wakil['penghasilan_bulanan'] == 4)
-                                            <option value="4">2 juta - 4.999.999</option>
-                                        @elseif($wakil['penghasilan_bulanan'] == 5)
-                                            <option value="5">5 juta - 20 juta</option>
-                                        @elseif($wakil['penghasilan_bulanan'] == 6)
-                                            <option value="6">lebih dari 20 juta</option>
-                                        @else
-                                            <option value="7">Tidak Berpenghasilan</option>
-                                        @endif
+                                        {!! penghasilanStat($wakil['penghasilan_bulanan']) !!}
                                     </select>
                                 </div>
                             </div>
@@ -475,11 +385,9 @@
                                 <div class="form-group">
                                     <label class="control-label">Jarak Tempat Tinggal Ke Sekolah</label>
                                     <div class="checkbox checkbox-inverse checkbox-circle">
-                                        <input id="jarak_sekolah" class="selectCb" value="0" name="jarak_sekolah" type="checkbox">
-                                        <label for="checkbox-15">Kurang dari 1 km</label>
+                                        <input type="radio"  id="jarak_sekolah" name="jarak_sekolah" value="0"  {{ ($detail->jarak_sekolah=="0")? "checked" : "" }} >Kurang dari 1 km</label>
 
-                                        <input id="jarak_sekolah" class="selectCb" value="1" name="jarak_sekolah" type="checkbox"> 
-                                        <label for="checkbox-15">Lebih dari 1 km</label>
+                                        <input type="radio" id="jarak_sekolah" name="jarak_sekolah" value="1" {{ ($detail->jarak_sekolah=="1")? "checked" : "" }} >Lebih dari 1 km</label>
                                     </div>
                                 </div>
                             </div>
@@ -506,15 +414,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Jenis</label>
                                     <select class="form-control custom-select" name="jenis">
-                                        @if($prestasi['jenis'] == 1)
-                                            <option value="1">Sains</option>
-                                        @elseif($prestasi['jenis'] == 2)
-                                            <option value="2">Seni</option>
-                                        @elseif($prestasi['jenis'] == 3)
-                                            <option value="3">Olahraga</option>
-                                        @else
-                                            <option value="4">Lain-lain</option>
-                                        @endif
+                                       {!! jenisStat($prestasi['jenis']) !!}
                                     </select>
                                     <p style="color:#83b1e2;"><strong>*</strong> Jenis prestasi yang pernah diraih oleh peserta didik</p>
                                 </div>
@@ -523,19 +423,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Tingkat</label>
                                     <select class="form-control custom-select" name="tingkat">
-                                        @if($prestasi['tingkat'] == 1)
-                                            <option value="1">Sekolah</option>
-                                        @elseif($prestasi['tingkat'] == 2)
-                                            <option value="2">Kecamatan</option>
-                                        @elseif($prestasi['tingkat'] == 3)
-                                            <option value="3">Kabupaten</option>
-                                        @elseif($prestasi['tingkat'] == 4)
-                                            <option value="4">Provinsi</option>
-                                        @elseif($prestasi['tingkat'] == 5)
-                                            <option value="5">Nasional</option>
-                                        @else
-                                            <option value="6">Internasional</option>
-                                        @endif
+                                        {!! tingkatStat($prestasi['tingkat']) !!}
                                     </select>
                                     <p style="color:#83b1e2;"><strong>*</strong> Tingkat penyelenggaraan prestasi yang pernah diraih oleh peserta didik</p>
                                 </div>
@@ -557,7 +445,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="control-label">Penyelenggara</label>
-                                    <input type="text" name="penyelenggara" class="form-control" placeholder="Penyelenggara" value="{{ $prestasi['penyelenggara]'] }}">
+                                    <input type="text" name="penyelenggara" class="form-control" placeholder="Penyelenggara" value="{{ $prestasi['penyelenggara'] }}">
                                     <p style="color:#83b1e2;"><strong>*</strong> Nama penyelenggara/panitia kegiatan dari prestasi yang pernah diraih oleh peserta didik. Contoh: Panitia O2SN dan FL2SN Kab. Bengkayang. Sesuaikan menurut piagam yang diperoleh.</p>
                                 </div>
                             </div>
@@ -571,11 +459,7 @@
                                 <div class="form-group">
                                     <label class="control-label">Jenis</label>
                                     <select class="form-control custom-select" name="jenis">
-                                        <option value="1">Anak berprestasi</option>
-                                        <option value="2">Anak Miskin</option>
-                                        <option value="3">Pendidikan</option>
-                                        <option value="4">Unggulan</option>
-                                        <option value="99">Lain-lain</option>
+                                        {!! jenisbeStat($beasiswa['jenis']) !!}
                                     </select>
                                     <p style="color:#83b1e2;"><strong>*</strong> Jenis beasiswa yang pernah diterima oleh peserta didik</p>
                                 </div>

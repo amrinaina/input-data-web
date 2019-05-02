@@ -103,18 +103,21 @@
                                 <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Master Data</span></a>
                                 <ul aria-expanded="false" class="collapse">
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ URL::to('/siswa') }}"></i> Siswa </a>
+                                        <a class="nav-link" href="{{ URL::to('/siswa') }}"> Siswa </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ URL::to('/wakil') }}"></i> Wakil </a>
+                                        <a class="nav-link" href="{{ URL::to('/wakil') }}"> Wakil </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ URL::to('/ekskul') }}"></i> Ekskul </a>
+                                        <a class="nav-link" href="{{ URL::to('/ekskul') }}"> Ekskul </a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ URL::to('/registrasi') }}"></i> Registrasi Murid </a>
+                                        <a class="nav-link" href="{{ URL::to('/registrasi') }}"> Registrasi Murid </a>
                                     </li>
                                 </ul>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ URL::to('/user') }}"><i class="fa fa-user"></i> Users</a>
+                                </li>
                             </li>
                         </li>
                     </ul>

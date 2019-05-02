@@ -63,7 +63,18 @@ Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
 
     Route::get('/registrasi/export', ['as'=>'exportregister.index','uses'=>'RegistrasiController@exportindex']);
     Route::get('/registrasi/exportdata', ['as'=>'exportregister.data','uses'=>'RegistrasiController@exportdata']);
+    Route::get('registrasi/filter',['as' => 'exportregister.filter','uses' => 'RegistrasiController@filter']);
+    Route::post('registrasi/hasilfilter',['as' => 'exportregister.hasilfilter','uses' => 'RegistrasiController@hasilfilter']);
+
     Route::get('/registrasi/import', ['as'=>'importregister.index','uses'=>'RegistrasiController@importindex']);
     Route::post('/registrasi/importdata', ['as'=>'importregister.data','uses'=>'RegistrasiController@importdata']);
 
+    //User
+    Route::get('/user', ['as'=>'user','uses'=>'UserController@index']);
+    Route::get('/user/create', ['as'=>'user.create','uses'=>'UserController@add']);
+    Route::post('/user/createprocess', ['as'=>'user.createprocess','uses'=>'UserController@addprocess']);
+    Route::get('/user/edit/{id}', ['as'=>'user.edit','uses'=>'UserController@edit']);
+    Route::patch('/user/editprocess/{id}', ['as'=>'user.editprocess','uses'=>'UserController@editprocess']);
+    Route::delete('/user/delete/{id}', ['as'=>'user.delete','uses'=>'UserController@delete']);
+    Route::get('/user/view/{id}', ['as'=>'user.view','uses'=>'UserController@view']);
 });

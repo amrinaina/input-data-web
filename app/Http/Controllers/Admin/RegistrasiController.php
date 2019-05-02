@@ -12,9 +12,10 @@ use App\Idw\SiswaFacade as FSiswa;
 
 class RegistrasiController extends Controller
 {
-    public function index(){
-    	$data = FSiswa::indexregister();
-  		return view('admin.registrasi.index',compact('data'));
+  public function index(){
+  	$data = FSiswa::indexregister();
+    $filter = 0;
+		return view('admin.registrasi.index',compact('data','filter'));
  	}
 
 	public function add(){
@@ -35,11 +36,11 @@ class RegistrasiController extends Controller
  	}
 
 	public function edit($id){
-	    $data = FSiswa::editregister($id);
-	    $murid = FSiswa::index();
-		$jurusan = FSiswa::jurusan();
+  	 $data = FSiswa::editregister($id);
+  	 $murid = FSiswa::index();
+     $jurusan = FSiswa::jurusan();
 
-	    return view('admin.registrasi.edit')->with('data',$data)
+	   return view('admin.registrasi.edit')->with('data',$data)
 	                                  ->with('murid',$murid)
 	                                  ->with('jurusan',$jurusan);
 	}
@@ -48,13 +49,12 @@ class RegistrasiController extends Controller
     	unset($req['_token']);
     	unset($req['_method']);
 
-    	$data = RegistrasiMurid::where(['id'=>$id])->update($req->all());
-        
-	  if ($data) {
-	      return redirect('registrasi')->with(['message' => 'Data berhasil diubah!']);
-	  }else{
-	      return redirect('registrasi')->with(['message' => 'Data gagal diubah!']);
-	  }
+    	$data = RegistrasiMurid::where(['id'=>$id])->update($req->all());     
+  	  if ($data) {
+  	      return redirect('registrasi')->with(['message' => 'Data berhasil diubah!']);
+  	  }else{
+  	      return redirect('registrasi')->with(['message' => 'Data gagal diubah!']);
+  	  }
   }
 
   public function delete(Request $req,$id){
@@ -68,6 +68,19 @@ class RegistrasiController extends Controller
     return redirect('registrasi')->with(['id'=>'warning','message' => 'Data gagal dihapus!']);
   }
 
+  public function filter(){
+    $data = RegistrasiMurid::get();
+    return view('admin.registrasi.export',compact('data'));
+  }
+
+  public function hasilfilter(Request $req){
+    $data = RegistrasiMurid::where('id',$req->nis)->get();
+    // dd($data);
+    $filter = 1;
+
+    return view('admin.registrasi.hasilfilter',compact('data','filter'));
+  }
+
   public function exportindex(){
       $data = RegistrasiMurid::all();
       return view('admin.registrasi.export',compact('data'));
@@ -75,15 +88,34 @@ class RegistrasiController extends Controller
 
   public function exportdata(){
       $data = RegistrasiMurid::select(
-            'nis as NIS',
-            'id_murid as Nama',
+          'nis as NIS',
+          'id_murid as Nama',
       		'jurusan as Jurusan',
-            'jenis as Jenis',
-            'tanggal_masuk as Tanggal Masuk',
-            'asal_sekolah as Asal Sekolah',
-            'no_peserta_ujian  as No.Peserta Ujian',
+          'jenis as Jenis',
+          'tanggal_masuk as Tanggal Masuk',
+          'asal_sekolah as Asal Sekolah',
+          'no_peserta_ujian  as No.Peserta Ujian',
 	        'nomor_seri_ijazah  as No.Seri Ijazah',
 	        'nomor_seri_skhus  as No.Seri SKHUS')->get();
+
+      return Excel::create('Data Registrasi Siswa', function($excel) use ($data) {
+          $excel->sheet('Data Registrasi Siswa', function($sheet) use ($data) {
+              $sheet->fromArray($data);
+          });
+
+      })->download('xlsx');
+  }
+  public function exportselect(){
+      $data = RegistrasiMurid::select(
+          'nis as NIS',
+          'id_murid as Nama',
+          'jurusan as Jurusan',
+          'jenis as Jenis',
+          'tanggal_masuk as Tanggal Masuk',
+          'asal_sekolah as Asal Sekolah',
+          'no_peserta_ujian  as No.Peserta Ujian',
+          'nomor_seri_ijazah  as No.Seri Ijazah',
+          'nomor_seri_skhus  as No.Seri SKHUS')->get();
 
       return Excel::create('Data Registrasi Siswa', function($excel) use ($data) {
           $excel->sheet('Data Registrasi Siswa', function($sheet) use ($data) {
