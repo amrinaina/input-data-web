@@ -16,7 +16,6 @@
 @section('content')
 <div class="row">
     <div class="col-12">
-        <a type="submit" class="btn btn-success" href="{{ route('exportregister.data') }}"><i class="fa fa-arrow-circle-right"></i> Export</a>
         <header class="panel-heading">
             <a href="{{ route('exportregister.filter') }}" class="btn btn-primary pull-right">
                 <i class="fa fa-plus"></i> Filter by NIS
@@ -28,7 +27,6 @@
             </a>
             @endif
 
-            <h2 class="panel-title">Report semua barang</h2>
         </header>
     </div>
     <br><br>
@@ -40,18 +38,22 @@
                 <div class="table-responsive m-t-40">
                     <table id="myTable" class="table table-bordered table-striped">
                         @if(count($data))
-                            <table class="table table-bordered table-striped mb-none" id="datatable-tabletools" data-swf-path="{{asset('assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf')}}">
+                            <table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" id="example23" data-swf-path="{{asset('assets/vendor/jquery-datatables/extras/TableTools/swf/copy_csv_xls_pdf.swf')}}">
                         @else
-                            <table class="table table-bordered table-striped mb-none">
+                            <table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" id="example23">
                         @endif
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th>NIS</th>
+                                <th>Nama</th>
                                 <th>Jurusan</th>
-                                <th>Jenis Pendaftaran</th>
                                 <th>Tanggal Masuk</th>
                                 <th>Asal Sekolah</th>
+                                <th>No.Peserta Ujian</th>
+                                <th>No.Seri Ijazah</th>
+                                <th>No.Seri SKHUS</th>
+                                <th>Pendaftaran</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,10 +63,14 @@
                                 <tr>
                                     <td class="text-center">{{ $no++ }}</td>
                                     <td>{{ $v->nis }}</td>
+                                    <td>{{ $v->siswa->name }}</td>
                                     <td>{{ $v->jur->name }}</td>
-                                    <td class="text-center">{!! jpendaftaranStat($v['jenis']) !!}</td>
                                     <td>{{ $v->tanggal_masuk }}</td>
                                     <td>{{ $v->asal_sekolah }}</td>
+                                    <td>{{ $v->no_peserta_ujian }}</td>
+                                    <td>{{ $v->nomor_seri_ijazah }}</td>
+                                    <td>{{ $v->nomor_seri_skhus }}</td>
+                                    <td class="text-center">{!! jpendaftaranStat($v['jenis']) !!}</td>
                                 </tr>
                             @endforeach
                         @else

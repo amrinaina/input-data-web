@@ -22,6 +22,9 @@ class RegistrasiMurid extends Model
     public function murid(){
     	return $this->hasMany('App\Models\Murid','id','id_murid');
     }
+    public function siswa(){
+        return $this->hasOne('App\Models\Murid','id','id_murid');
+    }
     public function jur(){
     	return $this->hasOne('App\Models\Jurusan','id','jurusan');
     }

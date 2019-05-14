@@ -44,8 +44,6 @@
                                 <td>{{ $v['pekerjaan'] }}</td>
                                 <td>{{ $v['type'] }}</td>
                                 <td class="text-center">
-                                    <a class="btn btn-outline-info" href="{{ url('wakil/view/'.$v->id)  }}"><i class="fa fa-eye"></i> View</a>
-
                                     <a class="btn btn-outline-primary" href="{{ url('wakil/edit/'.$v->id)  }}"><i class="fa fa-pencil"></i> Ubah</a>
                                     
                                     <form action="{{ url('wakil/delete/'.$v->id) }}" method="POST" style="display: inline-block">

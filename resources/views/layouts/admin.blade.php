@@ -39,7 +39,7 @@
                 <!-- Logo -->
                 <div class="navbar-header">
                     <a href="{{ url('/') }}">
-                    {{ ('Inventaris') }}
+                    {{ ('Wikrama') }}
                 </a>
                 </div>
                 <!-- End Logo -->
@@ -65,6 +65,23 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-muted " href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{{ asset('assets2/images/users/5.jpg')}}" alt="user" class="profile-pic" /></a>
+                                    <div class="dropdown-menu dropdown-menu-right animated zoomIn">
+                                        <ul class="dropdown-user">
+                                        <span><center>{{ Auth::user()->name }}</center></span>
+                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                         document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+                                        </ul>
+                                    </div>
+                                </li>
+                                {{-- <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
@@ -80,7 +97,7 @@
                                             @csrf
                                         </form>
                                     </div>
-                                </li>
+                                </li> --}}
                             @endguest
                         </li>
                     </ul>
