@@ -17,13 +17,18 @@
 <div class="row">
     <div class="col-12">
         <a type="submit" class="btn btn-warning" href="{{ url('/registrasi/import') }}"><i class="fa fa-arrow-circle-left"></i> Import</a>
-        <a type="submit" class="btn btn-success" href="{{ route('exportregister.index') }}"><i class="fa fa-arrow-circle-right"></i> Export</a>
         <a type="submit" class="btn btn-info" href="{{ url('/registrasi/create') }}"><i class="fa fa-plus-square"></i> Create</a>
+        <a type="submit" id="doExport" class="btn btn-success"><i class="fa fa-arrow-circle-right"></i> Export</a>
+        <form name="formExport" action="{{route('exportregister.data')}}" method="post">
+            @csrf
+            <input type="hidden" name="fieldList"
+                value="nis as NIS,jurusan as Jurusan,jenis as Jenis,tanggal_masuk as Tanggal Masuk,asal_sekolah as Asal Sekolah">
+        </form>
         <header class="panel-heading">
             <a href="{{ route('exportregister.filter') }}" class="btn btn-primary pull-right">
                 <i class="fa fa-plus"></i> Filter by NIS
             </a>
-            
+
             @if($filter == 1)
             <a href="{{ route('registrasi') }}" class="btn btn-warning mr-sm pull-right">
                 Hilangkan filter
@@ -49,11 +54,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>NIS</th>
-                                <th>Jurusan</th>
-                                <th>Jenis Pendaftaran</th>
-                                <th>Tanggal Masuk</th>
-                                <th>Asal Sekolah</th>
+                                <th><input class="export-check" type="checkbox" checked value="nis as NIS"> NIS</th>
+                                <th><input class="export-check" type="checkbox" checked value="jurusan as Jurusan"> Jurusan</th>
+                                <th><input class="export-check" type="checkbox" checked value="jenis as Jenis"> Jenis Pendaftaran</th>
+                                <th><input class="export-check" type="checkbox" checked value="tanggal_masuk as Tanggal Masuk"> Tanggal Masuk</th>
+                                <th><input class="export-check" type="checkbox" checked value="asal_sekolah as Asal Sekolah"> Asal Sekolah</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -70,7 +75,7 @@
                                     <td>{{ $v->asal_sekolah }}</td>
                                     <td class="text-center">
                                         <a class="btn btn-outline-primary" href="{{ url('registrasi/edit/'.$v->id)  }}"><i class="fa fa-pencil"></i> Ubah</a>
-                                        
+
                                         <form action="{{ url('registrasi/delete/'.$v->id) }}" method="POST" style="display: inline-block">
                                                     {{ csrf_field() }}
                                                     {{ method_field('DELETE') }}
@@ -95,4 +100,21 @@
     </div>
 </div>
 
+@endsection
+@section('script')
+<script>
+    $(document).ready(function(){
+    $('#doExport').click(function(){
+        document.formExport.submit();
+    });
+
+    $('.export-check').click(function(){
+        var list = [];
+        $("input:checkbox[class='export-check']:checked").each(function(){
+            list.push($(this).attr('value'));
+        });
+        $('input[name=fieldList]').val(list);
+    });
+});
+</script>
 @endsection

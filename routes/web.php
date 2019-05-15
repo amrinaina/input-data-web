@@ -62,7 +62,7 @@ Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
     Route::get('/registrasi/view/{id}', ['as'=>'registrasi.view','uses'=>'RegistrasiController@view']);
 
     Route::get('/registrasi/export', ['as'=>'exportregister.index','uses'=>'RegistrasiController@exportindex']);
-    Route::get('/registrasi/exportdata', ['as'=>'exportregister.data','uses'=>'RegistrasiController@exportdata']);
+    Route::post('/registrasi/exportdata', ['as'=>'exportregister.data','uses'=>'RegistrasiController@exportdata']);
     Route::get('registrasi/filter',['as' => 'exportregister.filter','uses' => 'RegistrasiController@filter']);
     Route::post('registrasi/hasilfilter',['as' => 'exportregister.hasilfilter','uses' => 'RegistrasiController@hasilfilter']);
 

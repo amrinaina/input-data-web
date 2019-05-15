@@ -19,6 +19,11 @@
         <a type="submit" class="btn btn-info" href="{{ route('siswa.create') }}"><i class="fa fa-plus-square"></i> Create</a>
         <a type="submit" class="btn btn-warning" href="{{ route('import.index') }}"><i class="fa fa-arrow-circle-left"></i> Import</a>
         <a id="doExport" class="btn btn-success" ><i class="fa fa-arrow-circle-right"></i> Export</a>
+        <form name="formExport" action="{{route('export.data')}}" method="post">
+            @csrf
+            <input type="hidden" name="fieldList"
+                value="nisn as NISN, name as Nama, jk as Jenis, agama as Agama, nama_negara as Negara">
+        </form>
     </div>
     <br><br>
     <div class="col-12">
@@ -29,19 +34,15 @@
                 <div class="table-responsive m-t-40">
                     <table id="myTable" class="table table-bordered table-striped">
                         <thead>
-                            <form name="formExport" action="{{route('export.data')}}" method="post">
-                            @csrf
-                            <input type="hidden" name="fieldList" value="nisn as NISN, name as Nama, jk as Jenis, agama as Agama, nama_negara as Negara">
-                                <tr>
-                                    <th>No</th>
-                                    <th><input class="export-check" type="checkbox" checked name="field[]" value="nisn as NISN"> NISN</th>
-                                    <th><input class="export-check" type="checkbox" checked name="field[]" value="name as Nama"> Name</th>
-                                    <th><input class="export-check" type="checkbox" checked name="field[]" value="jk as Jenis Kelamin"> Jenis Kelamin</th>
-                                    <th><input class="export-check" type="checkbox" checked name="field[]" value="agama as Agama"> Agama</th>
-                                    <th><input class="export-check" type="checkbox" checked name="field[]" value="nama_negara as Negara"> Negara</th>
-                                    <th class="text-center">Action</th>
-                                </tr>
-                            </form>
+                            <tr>
+                                <th>No</th>
+                                <th><input class="export-check" type="checkbox" checked value="nisn as NISN"> NISN</th>
+                                <th><input class="export-check" type="checkbox" checked value="name as Nama"> Name</th>
+                                <th><input class="export-check" type="checkbox" checked value="jk as Jenis Kelamin"> Jenis Kelamin</th>
+                                <th><input class="export-check" type="checkbox" checked value="agama as Agama"> Agama</th>
+                                <th><input class="export-check" type="checkbox" checked value="nama_negara as Negara"> Negara</th>
+                                <th class="text-center">Action</th>
+                            </tr>
                         </thead>
                         <tbody>
                         <?php $no = 1;?>
@@ -80,20 +81,6 @@
 $(document).ready(function(){
     $('#doExport').click(function(){
         document.formExport.submit();
-
-        //// First attempt
-        // var list = [];
-        // $("input:checkbox[class='export-check']:checked").each(function(){
-        //     list.push($(this).attr('value'));
-        // });
-        // $.ajax({
-        //     method: 'POST',
-        //     url: "{{route('export.data')}}",
-        //     data: {
-        //         _token: "{{csrf_token()}}",
-        //         list
-        //     }
-        // }).done();
     });
 
     $('.export-check').click(function(){

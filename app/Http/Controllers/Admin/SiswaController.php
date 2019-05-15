@@ -189,7 +189,6 @@ class SiswaController extends Controller
 
     public function exportdata(Request $request)
     {
-        // dd($request->all());
         $select = array_merge( explode(',', $request->fieldList),
             [
                 'nik as NIK',
@@ -221,7 +220,6 @@ class SiswaController extends Controller
                 'rekening_holder as Rekening Holder'
             ]
         );
-        // dd($select);
         $data = Murid::select($select)->get();
         Excel::create('Data Siswa', function ($excel) use ($data) {
             $excel->sheet('Data Siswa', function ($sheet) use ($data) {

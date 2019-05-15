@@ -94,19 +94,17 @@ class RegistrasiController extends Controller
         return view('admin.registrasi.export', compact('data'));
     }
 
-    public function exportdata()
+    public function exportdata(Request $request)
     {
-        $data = RegistrasiMurid::select(
-            'nis as NIS',
-            'id_murid as Nama',
-            'jurusan as Jurusan',
-            'jenis as Jenis',
-            'tanggal_masuk as Tanggal Masuk',
-            'asal_sekolah as Asal Sekolah',
-            'no_peserta_ujian  as No.Peserta Ujian',
-            'nomor_seri_ijazah  as No.Seri Ijazah',
-            'nomor_seri_skhus  as No.Seri SKHUS'
-        )->get();
+        $select = array_merge(explode(',', $request->fieldList),
+            [
+                'id_murid as Nama',
+                'no_peserta_ujian  as No.Peserta Ujian',
+                'nomor_seri_ijazah  as No.Seri Ijazah',
+                'nomor_seri_skhus  as No.Seri SKHUS'
+            ]
+        );
+        $data = RegistrasiMurid::select( $select )->get();
 
         return Excel::create('Data Registrasi Siswa', function ($excel) use ($data) {
             $excel->sheet('Data Registrasi Siswa', function ($sheet) use ($data) {
