@@ -116,7 +116,7 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ URL::to('/home') }}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
                             </li>
-                            <li> 
+                            <li>
                                 <a class="has-arrow  " href="#" aria-expanded="false"><i class="fa fa-table"></i><span class="hide-menu">Master Data</span></a>
                                 <ul aria-expanded="false" class="collapse">
                                     <li class="nav-item">
@@ -154,7 +154,7 @@
                 @yield('content')
             </div>
             <!-- End Container fluid  -->
-            
+
         </div>
         <footer class="footer center"> © 2018 All rights reserved. Template designed by <a href="https://colorlib.com">Colorlib</a></footer>
         <!-- End Page wrapper  -->
@@ -184,7 +184,7 @@
     <script src="{{ asset('assets2/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js')}}"></script>
     <script src="{{ asset('assets2/js/lib/datatables/cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js')}}"></script>
     <script src="{{ asset('assets2/js/lib/datatables/datatables-init.js')}}"></script>
-
+    @yield('script')
 </body>
 
 </html>

@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
 {
-    
+
 	//Home
 	Route::get('/home', 'DashboardController@index')->name('home');
 
@@ -42,7 +42,7 @@ Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
 
     //Export
     Route::get('/siswa/export', ['as'=>'export.index','uses'=>'SiswaController@exportindex']);
-    Route::get('/siswa/exportdata', ['as'=>'export.data','uses'=>'SiswaController@exportdata']);
+    Route::post('/siswa/exportdata', ['as'=>'export.data','uses'=>'SiswaController@exportdata']);
 
     Route::post('/exam_scores/export', ['as'=>'nimda.examScores.export','uses'=>'EExamController@export']);
     Route::post('/exam_scores/getreport', ['as'=>'nimda.examScores.getReport','uses'=>'EExamController@getReport']);
