@@ -22,7 +22,7 @@
         <form name="formExport" action="{{route('exportregister.data')}}" method="post">
             @csrf
             <input type="hidden" name="fieldList"
-                value="nis as NIS,jurusan as Jurusan,jenis as Jenis,tanggal_masuk as Tanggal Masuk,asal_sekolah as Asal Sekolah">
+                value="nis as NIS,id_murid as Nama,jurusan as Jurusan,tanggal_masuk as Tanggal Masuk,asal_sekolah as Asal Sekolah,no_peserta_ujian as No.Peserta Ujian,nomor_seri_ijazah as No.Seri Ijazah,nomor_seri_skhus as No.Seri SKHUS,jenis as Jenis">
         </form>
         <header class="panel-heading">
             <a href="{{ route('exportregister.filter') }}" class="btn btn-primary pull-right">
@@ -54,11 +54,11 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th><input class="export-check" type="checkbox" checked value="nis as NIS"> NIS</th>
-                                <th><input class="export-check" type="checkbox" checked value="jurusan as Jurusan"> Jurusan</th>
-                                <th><input class="export-check" type="checkbox" checked value="jenis as Jenis"> Jenis Pendaftaran</th>
-                                <th><input class="export-check" type="checkbox" checked value="tanggal_masuk as Tanggal Masuk"> Tanggal Masuk</th>
-                                <th><input class="export-check" type="checkbox" checked value="asal_sekolah as Asal Sekolah"> Asal Sekolah</th>
+                                <th>NIS</th>
+                                <th>Jurusan</th>
+                                <th>Jenis Pendaftaran</th>
+                                <th>Tanggal Masuk</th>
+                                <th>Asal Sekolah</th>
                                 <th class="text-center">Action</th>
                             </tr>
                         </thead>
@@ -69,7 +69,7 @@
                                 <tr>
                                     <td class="text-center">{{ $no++ }}</td>
                                     <td>{{ $v->nis }}</td>
-                                    <td>{{ $v->jur->name }}</td>
+                                    <td>{{ $v->jurusan }}</td>
                                     <td class="text-center">{!! jpendaftaranStat($v['jenis']) !!}</td>
                                     <td>{{ $v->tanggal_masuk }}</td>
                                     <td>{{ $v->asal_sekolah }}</td>

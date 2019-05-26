@@ -31,7 +31,7 @@
                                     <label class="control-label">Siswa</label>
                                     <select class="form-control custom-select" name="id_murid">
                                         @foreach($murid as $mur)
-                                        	<option value="{{ $mur->id }}">{{ $mur->name }}</option>
+                                        	<option value="{{ $mur->name }}">{{ $mur->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -41,7 +41,7 @@
                                     <label class="control-label">Jurusan</label>
                                     <select class="form-control custom-select" name="jurusan">
                                         @foreach($jurusan as $jur)
-                                        	<option value="{{ $jur->id }}">{{ $jur->name }}</option>
+                                        	<option value="{{ $jur->name }}">{{ $jur->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

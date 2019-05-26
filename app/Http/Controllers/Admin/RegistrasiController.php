@@ -97,12 +97,7 @@ class RegistrasiController extends Controller
     public function exportdata(Request $request)
     {
         $select = array_merge(explode(',', $request->fieldList),
-            [
-                'id_murid as Nama',
-                'no_peserta_ujian  as No.Peserta Ujian',
-                'nomor_seri_ijazah  as No.Seri Ijazah',
-                'nomor_seri_skhus  as No.Seri SKHUS'
-            ]
+            []
         );
         $data = RegistrasiMurid::select( $select )->get();
 
@@ -121,9 +116,9 @@ class RegistrasiController extends Controller
             'jenis as Jenis',
             'tanggal_masuk as Tanggal Masuk',
             'asal_sekolah as Asal Sekolah',
-            'no_peserta_ujian  as No.Peserta Ujian',
-            'nomor_seri_ijazah  as No.Seri Ijazah',
-            'nomor_seri_skhus  as No.Seri SKHUS'
+            'no_peserta_ujian  as No Peserta Ujian',
+            'nomor_seri_ijazah  as No Seri Ijazah',
+            'nomor_seri_skhus  as No Seri SKHUS'
         )->get();
 
         return Excel::create('Data Registrasi Siswa', function ($excel) use ($data) {
@@ -148,12 +143,12 @@ class RegistrasiController extends Controller
                 foreach ($data as $key => $value) {
                     $register = new RegistrasiMurid();
                     $register->nis = $value->nis;
-                    $register->id_murid = $value->id_murid;
+                    $register->id_murid = $value->nama;
                     $register->jurusan = $value->jurusan;
                     $register->jenis = $value->jenis;
                     $register->tanggal_masuk = $value->tanggal_masuk;
                     $register->asal_sekolah = $value->asal_sekolah;
-                    $register->no_peserta_ujian = $value->no_peserta_ujian;
+                    $register->no_peserta_ujian =$value->no_peserta_ujian;
                     $register->nomor_seri_ijazah = $value->nomor_seri_ijazah;
                     $register->nomor_seri_skhus = $value->nomor_seri_skhus;
                     $register->save();

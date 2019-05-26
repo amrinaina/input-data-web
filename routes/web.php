@@ -44,10 +44,6 @@ Route::group(['middleware'=>['auth:web'],'namespace' => 'Admin'], function()
     Route::get('/siswa/export', ['as'=>'export.index','uses'=>'SiswaController@exportindex']);
     Route::post('/siswa/exportdata', ['as'=>'export.data','uses'=>'SiswaController@exportdata']);
 
-    Route::post('/exam_scores/export', ['as'=>'nimda.examScores.export','uses'=>'EExamController@export']);
-    Route::post('/exam_scores/getreport', ['as'=>'nimda.examScores.getReport','uses'=>'EExamController@getReport']);
-    Route::post('/exam_scores/getsubjecthotroom/{class_id}', ['as'=>'nimda.examScores.gethubjecthotroom','uses'=>'EExamController@getSubjectHotroom']);
-
     //Import
     Route::get('/siswa/import', ['as'=>'import.index','uses'=>'SiswaController@importindex']);
     Route::post('/siswa/importdata', ['as'=>'import.data','uses'=>'SiswaController@importdata']);

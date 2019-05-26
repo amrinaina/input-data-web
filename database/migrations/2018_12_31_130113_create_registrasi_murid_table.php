@@ -15,8 +15,8 @@ class CreateRegistrasiMuridTable extends Migration
     {
         Schema::create('registrasi_murid', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_murid')->nullable();
-            $table->integer('jurusan')->nullable();
+            $table->string('id_murid')->nullable();
+            $table->string('jurusan')->nullable();
             $table->integer('jenis')->nullable();
             $table->integer('nis')->nullable();
             $table->date('tanggal_masuk')->nullable();
