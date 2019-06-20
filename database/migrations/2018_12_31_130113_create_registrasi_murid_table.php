@@ -17,7 +17,7 @@ class CreateRegistrasiMuridTable extends Migration
             $table->increments('id');
             $table->string('id_murid')->nullable();
             $table->string('jurusan')->nullable();
-            $table->integer('jenis')->nullable();
+            $table->string('jenis')->nullable();
             $table->integer('nis')->nullable();
             $table->date('tanggal_masuk')->nullable();
             $table->string('asal_sekolah')->nullable();

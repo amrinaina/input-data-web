@@ -50,9 +50,9 @@
                                 <div class="form-group">
                                     <label class="control-label">Jenis Pendaftaran</label>
                                     <select class="form-control custom-select" name="jenis">
-                                        <option value="01">Siswa Baru</option>
-                                        <option value="02">Pindahan</option>
-                                        <option value="03">Kembali Bersekolah</option>
+                                        <option value="Siswa Baru">Siswa Baru</option>
+                                        <option value="Pindahan">Pindahan</option>
+                                        <option value="Kembali Bersekolah">Kembali Bersekolah</option>
                                     </select>
                                 </div>
                             </div>
