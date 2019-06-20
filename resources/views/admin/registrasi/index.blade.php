@@ -70,7 +70,7 @@
                                     <td class="text-center">{{ $no++ }}</td>
                                     <td>{{ $v->nis }}</td>
                                     <td>{{ $v->jurusan }}</td>
-                                    <td class="text-center">{!! jpendaftaranStat($v['jenis']) !!}</td>
+                                    <td class="text-center">{{$v['jenis']}}</td>
                                     <td>{{ $v->tanggal_masuk }}</td>
                                     <td>{{ $v->asal_sekolah }}</td>
                                     <td class="text-center">

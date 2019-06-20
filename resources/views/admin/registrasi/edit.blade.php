@@ -61,7 +61,8 @@
                                         @else
                                             <option value="Siswa Baru">Siswa Baru</option>
                                             <option value="Pindahan">Pindahan</option>
-                                            <option value="Kembali Bersekolah">Kembali Bersekolah</option>
+                                            <option value="Kembali Bersekolah" selected="">Kembali Bersekolah</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
